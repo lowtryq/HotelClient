@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using HotelClient.Services;
+using HotelClient.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace HotelClient
 {
@@ -7,6 +9,7 @@ namespace HotelClient
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -15,8 +18,13 @@ namespace HotelClient
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddSingleton<BookingService>();
+            builder.Services.AddSingleton<HotelsViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
