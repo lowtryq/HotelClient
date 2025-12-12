@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="HotelClient.Views.BookingPage"
+             Title="Booking">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="{Binding SelectedHotel.Name}" FontAttributes="Bold" FontSize="20" />
+
+            <Entry Placeholder="Your name" Text="{Binding GuestName}" />
+            <Entry Placeholder="Your email" Keyboard="Email" Text="{Binding GuestEmail}" />
+
+            <Label Text="CheckIn Date" />
+            <DatePicker Date="{Binding CheckInDate}" MinimumDate="{x:Static sys:DateTime.Today}" />
+
+            <Label Text="CheckOut Date" />
+            <DatePicker Date="{Binding CheckOutDate}" MinimumDate="{Binding CheckInDate}" />
+
+            <Label Text="Number of guests" />
+            <Stepper Minimum="1" Maximum="10" Value="{Binding NumberOfGuests}" />
+            <Label Text="{Binding NumberOfGuests}" />
+
+            <Button Text="Submit" Command="{Binding SubmitBookingCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:local="clr-namespace:HotelClient.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HotelClient.Converters"
+             x:Class="HotelClient.Views.MainPage"
+             Title="Список отелей">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToAvailabilityConverter x:Key="BoolToAvailabilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Entry Placeholder="Название отеля" Text="{Binding SearchName}" />
+        <Entry Placeholder="Город" Text="{Binding SearchCity}" />
+
+        <Label Text="Минимальный рейтинг:" />
+        <Entry Placeholder="Минимальный рейтинг" Keyboard="Numeric" Text="{Binding MinRating}" />
+
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Только с доступными местами" VerticalOptions="Center" />
+            <Switch IsToggled="{Binding HasAvailableRooms, Mode=TwoWay}" />
+        </HorizontalStackLayout>
+
+        <Button Text="Поиск" Command="{Binding SearchCommand}" />
+
+        <CollectionView ItemsSource="{Binding Hotels}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                        <Label Text="{Binding City.Name}" FontAttributes="Italic" />
+                        <Label Text="{Binding Rating, StringFormat='Рейтинг: {0:F1}'}" />
+                        <Label Text="{Binding HasAvailableRooms, Converter={StaticResource BoolToAvailabilityConverter}}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
