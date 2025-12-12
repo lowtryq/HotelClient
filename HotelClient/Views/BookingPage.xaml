@@ -3,27 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="HotelClient.Views.BookingPage"
-             Title="Booking">
+             Title="Бронь">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <Label Text="{Binding SelectedHotel.Name}" FontAttributes="Bold" FontSize="20" />
 
-            <Entry Placeholder="Your name" Text="{Binding GuestName}" />
-            <Entry Placeholder="Your email" Keyboard="Email" Text="{Binding GuestEmail}" />
+            <Entry Placeholder="Ваше имя" Text="{Binding GuestName}" />
+            <Entry Placeholder="Ваша email" Keyboard="Email" Text="{Binding GuestEmail}" />
 
-            <Label Text="CheckIn Date" />
+            <Label Text="Дата заезда" />
             <DatePicker Date="{Binding CheckInDate}" MinimumDate="{x:Static sys:DateTime.Today}" />
 
-            <Label Text="CheckOut Date" />
+            <Label Text="Дата выезда" />
             <DatePicker Date="{Binding CheckOutDate}" MinimumDate="{Binding CheckInDate}" />
 
-            <Label Text="Number of guests" />
+            <Label Text="Количество гостей" />
             <Stepper Minimum="1" Maximum="10" Value="{Binding NumberOfGuests}" />
             <Label Text="{Binding NumberOfGuests}" />
 
-            <Button Text="Submit" Command="{Binding SubmitBookingCommand}" />
+            <Button Text="Отправить запрос" Command="{Binding SubmitBookingCommand}" 
+                    BackgroundColor="#2196F3"/>
 
         </VerticalStackLayout>
     </ScrollView>

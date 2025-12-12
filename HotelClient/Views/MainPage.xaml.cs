@@ -1,5 +1,7 @@
 ﻿using HotelClient.Services;
 using HotelClient.ViewModels;
+using HotelClient.Models;
+
 namespace HotelClient.Views
 {
     public partial class MainPage : ContentPage
@@ -14,18 +16,12 @@ namespace HotelClient.Views
             BindingContext = ViewModel;
         }
 
-        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void OnBookButtonClicked(object sender, EventArgs e)
         {
-            if (e.CurrentSelection.Count == 0)
-                return;
-
-            var selectedHotel = e.CurrentSelection[0] as HotelClient.Models.Hotel;
-            if (selectedHotel == null)
-                return;
-
-            ((CollectionView)sender).SelectedItem = null;
-
-            await Navigation.PushAsync(new BookingPage(selectedHotel, bookingService));
+            if (sender is Button button && button.BindingContext is Hotel selectedHotel)
+            {
+                await Navigation.PushAsync(new BookingPage(selectedHotel, bookingService));
+            }
         }
     }
 
