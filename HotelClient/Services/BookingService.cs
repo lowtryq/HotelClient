@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HotelClient.Models;
+using System;
+using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
-using HotelClient.Models;
 
 namespace HotelClient.Services
 {
@@ -23,7 +21,7 @@ namespace HotelClient.Services
 
             try
             {
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync("http://localhost:7297/api/Hotels", request);
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/bookings", request);
                 if (!response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();

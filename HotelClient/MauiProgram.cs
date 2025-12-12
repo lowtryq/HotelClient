@@ -1,9 +1,17 @@
 ﻿using HotelClient.Services;
-using HotelClient.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace HotelClient
 {
+    public class SomeViewModel
+    {
+        private readonly BookingService _bookingService;
+
+        public SomeViewModel(BookingService bookingService)
+        {
+            _bookingService = bookingService;
+        }
+    }
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
@@ -18,10 +26,7 @@ namespace HotelClient
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<HttpClient>();
-            builder.Services.AddSingleton<BookingService>();
-            builder.Services.AddSingleton<HotelsViewModel>();
-            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<BookingService>();
 
 #if DEBUG
             builder.Logging.AddDebug();

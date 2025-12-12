@@ -1,7 +1,5 @@
-﻿using HotelClient.Models;
+﻿using HotelClient.Services;
 using HotelClient.ViewModels;
-using Microsoft.Maui.Controls;
-using HotelClient.Services;
 namespace HotelClient.Views
 {
     public partial class MainPage : ContentPage
@@ -32,5 +30,4 @@ namespace HotelClient.Views
     }
 
 }
-
 
