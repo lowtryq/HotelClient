@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//pull-request
 namespace HotelClient.Converters
 {
     public class BoolToAvailabilityConverter : IValueConverter
     {
-        int testpull;
+        int testpull; //pull-request
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool available)
