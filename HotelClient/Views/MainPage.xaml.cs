@@ -7,12 +7,13 @@ namespace HotelClient.Views
     public partial class MainPage : ContentPage
     {
         public HotelsViewModel ViewModel { get; }
-        private readonly BookingService bookingService = new BookingService(new HttpClient());
+        private readonly BookingService bookingService;
 
         public MainPage()
         {
             InitializeComponent();
             ViewModel = new HotelsViewModel();
+            bookingService = new BookingService();
             BindingContext = ViewModel;
         }
 
@@ -24,6 +25,4 @@ namespace HotelClient.Views
             }
         }
     }
-
 }
-

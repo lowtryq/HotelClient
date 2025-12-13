@@ -10,9 +10,12 @@ namespace HotelClient.Services
     {
         private readonly HttpClient httpClient;
 
-        public BookingService(HttpClient httpClient)
+        public BookingService()
         {
-            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            this.httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(Config.BaseUrl)
+            };
         }
 
         public async Task<bool> CreateBookingAsync(BookingRequest request)
@@ -21,7 +24,7 @@ namespace HotelClient.Services
 
             try
             {
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/bookings", request);
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/bookings", request);
                 if (!response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();

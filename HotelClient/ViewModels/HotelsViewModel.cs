@@ -49,7 +49,7 @@ namespace HotelClient.ViewModels
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7297/") // Адрес сервера
+                BaseAddress = new Uri(Config.BaseUrl)
             };
 
             SearchCommand = new Command(async () => await SearchHotels());
@@ -86,7 +86,6 @@ namespace HotelClient.ViewModels
                     Hotels.Add(hotel);
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
