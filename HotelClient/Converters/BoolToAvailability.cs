@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//pull-request
 namespace HotelClient.Converters
 {
     public class BoolToAvailabilityConverter : IValueConverter
